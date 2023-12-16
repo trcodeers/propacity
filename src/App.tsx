@@ -83,6 +83,7 @@ function App() {
         Add Note
       </button>
 
+    
       <NoteModal
         isOpen={modalOpen}
         formData={noteToEdit}
