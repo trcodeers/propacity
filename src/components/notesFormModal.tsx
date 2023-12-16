@@ -11,26 +11,30 @@ type Props = {
   updateNote: (data: Notes) => void;
 };
 const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
-  
-  const { register, handleSubmit, reset, setValue, formState: { errors }} = useForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
-      title:  "",
+      title: "",
       description: "",
       id: null,
     },
   });
 
-  const [selectedColor, setSelectedColor] = useState<string>('#fff');
+  const [selectedColor, setSelectedColor] = useState<string>("#fff");
 
   useEffect(() => {
-    if(formData){
+    if (formData) {
       setValue("id", formData?.id);
       setValue("title", formData?.title);
       setValue("description", formData?.description);
-      setSelectedColor(formData?.color ? formData?.color : '#fff');
+      setSelectedColor(formData?.color ? formData?.color : "#fff");
     }
   }, [formData]);
-
 
   const onSubmit = (data: any) => {
     updateNote({ ...data, color: selectedColor });
@@ -60,30 +64,43 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
           >
             <div className="flex flex-col gap-4 justify-center mt-50">
               <div>
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Title
+                </label>
                 <input
                   className={`shadow appearance-none border rounded w-48 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outlin`}
                   id="title"
                   type="text"
-                  placeholder="Title"
+                  placeholder="Add note's title"
                   {...register("title", { required: "Title is required" })}
                 />
-                {errors.title && <p className="text-red-700">{errors.title.message}</p>}
+                {errors.title && (
+                  <p className="text-red-700">{errors.title.message}</p>
+                )}
               </div>
 
               <div>
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Description
+                </label>
                 <textarea
                   className={`shadow appearance-none border rounded w-48 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none `}
                   id="description"
-                  placeholder="Description"
+                  placeholder="Add content of note"
                   {...register("description", {
                     required: "Description is required",
                   })}
                   rows={6}
                 />
-                {errors.description && <p className="text-red-700">{errors.description.message}</p>}
+                {errors.description && (
+                  <p className="text-red-700">{errors.description.message}</p>
+                )}
               </div>
 
               <div>
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Color Picker
+                </label>
                 <SketchPicker
                   color={selectedColor}
                   onChange={(updatedColor) =>
@@ -103,7 +120,6 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
             </div>
           </form>
         </div>
-
       </div>
     </div>
   );
