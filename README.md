@@ -12,8 +12,11 @@ This app is a simple version of Google Keep.
 
 <h3>Tech Stack</h3>
 1. React js
+</br>
 2. Tailwind CSS
+</br>
 3. React icons
+</br>
 4. Browser local storage to persist data
 
 <h3> How it works </h3>
