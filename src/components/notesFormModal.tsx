@@ -7,24 +7,25 @@ type Props = {
   isOpen: boolean 
   onClose: any
   formData: any
-  updateTask: any
+  updateNote: any
 }
-const NoteModal = ({ isOpen, onClose, formData, updateTask, } : Props) => {
+const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
   
     const { register, handleSubmit, reset } = useForm({
         defaultValues:{
             name: formData?.name || '' ,
             description: formData?.description || '',
-            date: formData?.date || ''
+            id: formData?.id || null
         }
     });
 
 
   const onSubmit = (data: any) => {
     console.log(data);
-    // updateTask(data);
+    updateNote(data);
     reset()
   };
+  
   return (
     <div
       className={`z-50 fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 ${
@@ -80,4 +81,4 @@ const NoteModal = ({ isOpen, onClose, formData, updateTask, } : Props) => {
   );
 };
 
-export default NoteModal;
+export default NotesFormModal;

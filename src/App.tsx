@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NoteCard from './components/noteCard';
-import NoteModal from './components/notesModal';
+import NoteModal from './components/notesFormModal';
 
 
 
@@ -26,6 +26,15 @@ function App() {
     console.log('click delete')
   }
 
+  const updateNote = (data: any) =>{
+    if(data.id){
+      console.log('update existing note', data)
+    }
+    else{
+      console.log('Create new note', data)
+    }
+  }
+
   return (
     <div className="App">
       <button onClick={onClickAddNote} className='bg-red-100'>Add Notes</button>
@@ -33,7 +42,7 @@ function App() {
       <NoteModal
         isOpen={modalOpen}
         formData={null}
-        updateTask={null}
+        updateNote={updateNote}
         onClose={closeModal}
       />
 
