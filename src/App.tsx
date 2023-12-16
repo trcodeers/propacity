@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import NoteCard from "./components/noteCard";
 import NoteModal from "./components/notesFormModal";
-import { createNewNote, getAllNotes } from "./services/notes";
+import { createNewNote, getAllNotes, deleteNote } from "./services/notes";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,9 +25,6 @@ function App() {
     console.log("click edit");
   };
 
-  const onClickDelete = () => {
-    console.log("click delete");
-  };
 
   const updateNote = (data: any) => {
     if (data.id) {
@@ -44,8 +41,15 @@ function App() {
     setModalOpen(false)
   };
 
-  const deleteNote = (id: any) =>{
-
+  const onClickDelete = (id: any) =>{
+    const res = deleteNote(id)
+    if(res) {
+      setNotes(getAllNotes());
+      console.log('Deleted successfuly!')
+    }
+    else{
+      console.log('Failed to delete')
+    }
   }
 
   return (

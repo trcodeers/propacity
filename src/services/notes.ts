@@ -21,7 +21,7 @@ export const editNote = (data: any) =>{
     const { id } = data
     if(!id) return false
     const existingNotes: any = JSON.parse(localStorage.getItem('notes') as any)
-    const noteIndex = existingNotes.indexOf()
+    const noteIndex = existingNotes.findIndex((el: any) => el.id === id)
     existingNotes[noteIndex] = data
 
     localStorage.setItem('notes', JSON.stringify(existingNotes))
@@ -35,3 +35,15 @@ export const getAllNotes = () =>{
     const allNotes = localStorage.getItem('notes')
     return allNotes ? JSON.parse(allNotes) : []
 }
+
+export const deleteNote = (id: string) =>{
+    
+    if(!id) return false
+
+    const existingNotes: any = JSON.parse(localStorage.getItem('notes') as any) || []
+    const noteIndex = existingNotes.findIndex((el: any) => el.id === id)
+    existingNotes.splice(noteIndex, 1)
+    JSON.stringify(localStorage.setItem('notes', JSON.stringify(existingNotes)))
+    return true
+    
+}   
