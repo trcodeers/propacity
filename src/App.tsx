@@ -9,37 +9,39 @@ import {
   editNote,
 } from "./services/notes";
 import { useSnackbar } from "notistack";
+import { Notes } from "./types/notes";
+import SearchBar from "./components/searchBar";
 
 function App() {
   const { enqueueSnackbar } = useSnackbar();
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   
-  const [notes, setNotes] = useState([]);
-  const [filteredNotes, setFilteredNotes] = useState<Array<any> | null>(null)
+  const [notes, setNotes] = useState<Array<Notes>>([]);
+  const [filteredNotes, setFilteredNotes] = useState<Array<Notes> | null>(null)
 
-  const [noteToEdit, setNoteToEdit] = useState(null);
+  const [noteToEdit, setNoteToEdit] = useState<Notes | null>(null);
 
   useEffect(() => {
     setNotes(getAllNotes());
   }, []);
 
-  const onClickAddNote = () => {
+  const onClickAddNote = (): void => {
     setModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setModalOpen(false);
     setNoteToEdit(null);
   };
 
-  const onClickEdit = (data: any) => {
+  const onClickEdit = (data: Notes): void => {
     console.log("click edit", data);
     setNoteToEdit(data);
     setModalOpen(true);
   };
 
-  const updateNote = (data: any) => {
+  const updateNote = (data: Notes): void => {
     if (data.id) {
       console.log("update existing note", data);
       const res = editNote(data);
@@ -61,7 +63,7 @@ function App() {
     setModalOpen(false);
   };
 
-  const onClickDelete = (id: any) => {
+  const onClickDelete = (id: string): void => {
     const res = deleteNote(id);
     if (res) {
       setNotes(getAllNotes());
@@ -76,7 +78,7 @@ function App() {
     }
   };
 
-  const onInputChange = (e: any) =>{
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): void =>{
     console.log(e.target.value)
     const { value } = e.target
     if(!value){
@@ -95,6 +97,7 @@ function App() {
 
   return (
     <div className="App">
+      
       <div className="text-center">
         <button
           onClick={onClickAddNote}
@@ -105,11 +108,8 @@ function App() {
       </div>
 
       <div className="text-center mt-4">
-        <input
-          onChange={onInputChange}
-          type="text"
-          className="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
-          placeholder="Search..."
+        <SearchBar
+          onInputChange={onInputChange}
         />
       </div>
 
@@ -135,6 +135,7 @@ function App() {
           );
         })}
       </div>
+
     </div>
   );
 }
