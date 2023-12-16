@@ -3,8 +3,12 @@ import "./App.css";
 import NoteCard from "./components/noteCard";
 import NoteModal from "./components/notesFormModal";
 import { createNewNote, getAllNotes, deleteNote } from "./services/notes";
+import { useSnackbar } from 'notistack';
 
 function App() {
+
+  const { enqueueSnackbar } = useSnackbar();
+
   const [modalOpen, setModalOpen] = useState(false);
   const [notes, setNotes] = useState([]);
 
@@ -38,6 +42,7 @@ function App() {
       const res = createNewNote(data);
       if (res) {
         setNotes(getAllNotes());
+        enqueueSnackbar('Note created!', { autoHideDuration: 1000, variant: 'success', anchorOrigin: {vertical: 'top', horizontal: 'right'}  })
       } else {
         console.log("Failed to create");
       }
@@ -50,6 +55,7 @@ function App() {
     if(res) {
       setNotes(getAllNotes());
       console.log('Deleted successfuly!')
+      enqueueSnackbar('Deleted successfuly!', { autoHideDuration: 1000, variant: 'error', anchorOrigin: {vertical: 'top', horizontal: 'right'}  })
     }
     else{
       console.log('Failed to delete')
