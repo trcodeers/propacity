@@ -40,7 +40,7 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
         isOpen ? "" : "hidden"
       }`}
     >
-      <div className="bg-white w-1/2 p-6 rounded shadow-lg absolute top-48 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="mt-40 bg-white w-1/2 p-6 rounded shadow-lg absolute top-48 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <p className="text-lg  mb-4">
           {formData?.id ? "Update Note" : "Create new note"}
         </p>
@@ -87,7 +87,7 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
                 />
               </div>
 
-              <div>
+              <div className="text-center">
                 <button
                   className="bg-red-500 w-[80px] text-center text-white py-2 px-2 rounded "
                   type="submit"
