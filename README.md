@@ -2,6 +2,9 @@
 
 This app is a simple version of Google Keep.
 
+<h3>Live</h3>
+This website is hosted on this link : https://657ddbb4738f65596080f8a7--joyful-concha-99b39b.netlify.app/
+
 <h3>How to Run locally </h3>
 1. Clone this repo
 </br>
@@ -20,7 +23,7 @@ This app is a simple version of Google Keep.
 4. Browser local storage to persist data
 
 <h3>Responsive</h3>
-This app is responsive across all the device's screen.
+This app is responsive across all the device's screens.
 
 <h3> How it works </h3>
 
