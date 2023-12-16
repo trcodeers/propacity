@@ -19,6 +19,9 @@ This app is a simple version of Google Keep.
 </br>
 4. Browser local storage to persist data
 
+<h3>Responsive</h3>
+This app is responsive across all the device's screen.
+
 <h3> How it works </h3>
 
 Initially displays a button to create the note, a search bar, and a message for no notes available.
