@@ -2,7 +2,7 @@ import { MdDelete, MdEdit } from "react-icons/md";
 
 const NoteCard = (props: any) =>{
 
-    const { title, description, onClickEdit, onClickDelete, noteID } = props
+    const { title, description, onClickEdit, onClickDelete, id } = props
     return(
 
         <div className="w-[200px] h-36 rounded overflow-hidden shadow-lg bg-red-50 relative">
@@ -15,13 +15,13 @@ const NoteCard = (props: any) =>{
         <div className="absolute bottom-0 right-0 mb-1 mr-2">
           <div className="flex flex-row justify-center gap-4">
             <div
-              onClick={() => onClickEdit({title, description, noteID })}
+              onClick={() => onClickEdit({title, description, id })}
               className="inline-block text-blue-700 bg-green-100 rounded-full px-2 py-"
             >
               <MdEdit />
             </div>
             <div
-              onClick={() => onClickDelete(title, description, noteID )}
+              onClick={() => onClickDelete(title, description, id )}
               className="inline-block text-red-500 bg-green-100 rounded-full px-2 py-"
             >
               <MdDelete />

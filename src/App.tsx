@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
+import { useEffect, useState } from "react";
 import "./App.css";
 import NoteCard from "./components/noteCard";
 import NoteModal from "./components/notesFormModal";
@@ -8,6 +7,8 @@ import { createNewNote, getAllNotes, deleteNote } from "./services/notes";
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [notes, setNotes] = useState([]);
+
+  const [noteToEdit, setNoteToEdit] = useState(null)
 
   useEffect(() => {
     setNotes(getAllNotes());
@@ -21,8 +22,11 @@ function App() {
     setModalOpen(false);
   };
 
-  const onClickEdit = () => {
-    console.log("click edit");
+  const onClickEdit = (data: any) => {
+    console.log("click edit", data);
+    setNoteToEdit(data)
+    setModalOpen(true)
+
   };
 
 
@@ -60,7 +64,7 @@ function App() {
 
       <NoteModal
         isOpen={modalOpen}
-        formData={null}
+        formData={noteToEdit}
         updateNote={updateNote}
         onClose={closeModal}
       />
@@ -74,8 +78,7 @@ function App() {
               description={description}
               onClickEdit={onClickEdit}
               onClickDelete={onClickDelete}
-              noteId={id}
-              id={title}
+              id={id}
             />
           );
         })}

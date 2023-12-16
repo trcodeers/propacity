@@ -10,10 +10,12 @@ type Props = {
   updateNote: any
 }
 const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
-  
+
+ 
+
     const { register, handleSubmit, reset } = useForm({
         defaultValues:{
-            title: formData?.name || '' ,
+            title: formData?.title || '' ,
             description: formData?.description || '',
             id: formData?.id || null
         }
