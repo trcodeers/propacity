@@ -11,7 +11,7 @@ const SearchBar = (props: Props) =>{
           onChange={onInputChange}
           type="text"
           className="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
-          placeholder="Search..."
+          placeholder="Search by title..."
         />
     )
 
