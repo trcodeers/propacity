@@ -14,7 +14,9 @@ function App() {
   const { enqueueSnackbar } = useSnackbar();
 
   const [modalOpen, setModalOpen] = useState(false);
+  
   const [notes, setNotes] = useState([]);
+  const [filteredNotes, setFilteredNotes] = useState<Array<any> | null>(null)
 
   const [noteToEdit, setNoteToEdit] = useState(null);
 
@@ -74,6 +76,23 @@ function App() {
     }
   };
 
+  const onInputChange = (e: any) =>{
+    console.log(e.target.value)
+    const { value } = e.target
+    if(!value){
+      console.log('no val')
+      setFilteredNotes(null)
+      console.log(notes)
+      return
+    }
+
+
+    const filteredNotes = notes.filter((el: any) => el.title.toLowerCase().includes(value.toLowerCase()))
+    console.log(filteredNotes)
+    setFilteredNotes([ ...filteredNotes ])
+
+  }
+
   return (
     <div className="App">
       <div className="text-center">
@@ -87,6 +106,7 @@ function App() {
 
       <div className="text-center mt-4">
         <input
+          onChange={onInputChange}
           type="text"
           className="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
           placeholder="Search..."
@@ -101,7 +121,7 @@ function App() {
       />
 
       <div className="flex flex-wrap flex-row gap-4 justify-center mt-12 px-8">
-        {notes.map((el: any, index: number) => {
+        {(filteredNotes || notes).map((el: any, index: number) => {
           const { title, description, id, color } = el;
           return (
             <NoteCard
