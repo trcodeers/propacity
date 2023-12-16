@@ -12,13 +12,14 @@ export const createNewNote = (data: any) =>{
     existingNotes.splice(0, 0, newNote)
 
     localStorage.setItem('notes', JSON.stringify(existingNotes))
+    return true
 
 }   
 
 export const editNote = (data: any) =>{
 
     const { id } = data
-    if(!id) return
+    if(!id) return false
     const existingNotes: any = JSON.parse(localStorage.getItem('notes') as any)
     const noteIndex = existingNotes.indexOf()
     existingNotes[noteIndex] = data
@@ -27,4 +28,10 @@ export const editNote = (data: any) =>{
 
     return true
 
+}
+
+export const getAllNotes = () =>{
+
+    const allNotes = localStorage.getItem('notes')
+    return allNotes ? JSON.parse(allNotes) : []
 }

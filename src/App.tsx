@@ -1,45 +1,54 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import NoteCard from './components/noteCard';
-import NoteModal from './components/notesFormModal';
-import { createNewNote } from './services/notes';
-
-
+import React, { useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import NoteCard from "./components/noteCard";
+import NoteModal from "./components/notesFormModal";
+import { createNewNote, getAllNotes } from "./services/notes";
 
 function App() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [notes, setNotes] = useState([]);
 
-  const [modalOpen, setModalOpen] = useState(false)
+  useEffect(() => {
+    setNotes(getAllNotes());
+  }, []);
 
-  const onClickAddNote = () =>{
-    setModalOpen(true)
-  }
+  const onClickAddNote = () => {
+    setModalOpen(true);
+  };
 
   const closeModal = () => {
     setModalOpen(false);
   };
 
-  const onClickEdit = () =>{
-    console.log('click edit')
-  }
+  const onClickEdit = () => {
+    console.log("click edit");
+  };
 
-  const onClickDelete = () =>{
-    console.log('click delete')
-  }
+  const onClickDelete = () => {
+    console.log("click delete");
+  };
 
-  const updateNote = (data: any) =>{
-    if(data.id){
-      console.log('update existing note', data)
+  const updateNote = (data: any) => {
+    if (data.id) {
+      console.log("update existing note", data);
+    } else {
+      console.log("Create new note", data);
+      const res = createNewNote(data);
+      if (res) {
+        setNotes(getAllNotes());
+      } else {
+        console.log("Failed to create");
+      }
     }
-    else{
-      console.log('Create new note', data)
-      createNewNote(data)
-    }
-  }
+    setModalOpen(false)
+  };
 
   return (
     <div className="App">
-      <button onClick={onClickAddNote} className='bg-red-100'>Add Notes</button>
+      <button onClick={onClickAddNote} className="bg-red-100">
+        Add Notes
+      </button>
 
       <NoteModal
         isOpen={modalOpen}
@@ -48,22 +57,21 @@ function App() {
         onClose={closeModal}
       />
 
-    <div className='flex flex-row gap-4 justify-center mt-12'>
-      <NoteCard
-        title="THis is titlecccdcdcdddscdscdscsddsc"
-        description="THis is afbnkjewbnfkjebfkjebfkjewbfjkebfjhef ejhf ejh fjehf ejhf ejhf ejhfe fhj fhjf efhj description"
-        onClickEdit={onClickEdit}
-        onClickDelete={onClickDelete}
-      />
-      <NoteCard
-        title="THis is titlecccdcdcdddscdscdscsddsc"
-        description="THis is afbnkjewbnfkjebfkjebfkjewbfjkebfjhef ejhf ejh fjehf ejhf ejhf ejhfe fhj fhjf efhj description"
-        onClickEdit={onClickEdit}
-        onClickDelete={onClickDelete}
-      />
-    </div>
-
-    
+      <div className="flex flex-wrap flex-row gap-4 justify-center mt-12">
+        {notes.map((el: any, index: number) => {
+          const { title, description, id } = el;
+          return (
+            <NoteCard
+              title={title}
+              description={description}
+              onClickEdit={onClickEdit}
+              onClickDelete={onClickDelete}
+              noteId={id}
+              id={title}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
