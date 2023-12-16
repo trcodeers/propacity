@@ -22,10 +22,10 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
     useEffect(() =>{
       setValue('title', formData?.title)
       setValue('description', formData?.description)
+      setValue('id', formData?.id || null)
     }, [formData])
 
   const onSubmit = (data: any) => {
-    console.log(data);
     updateNote(data);
     reset()
   };

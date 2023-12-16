@@ -39,7 +39,8 @@ function App() {
   const updateNote = (data: any) => {
     if (data.id) {
       console.log("update existing note", data);
-      editNote(data);
+      const res = editNote(data);
+      setNotes(getAllNotes());
     } else {
       console.log("Create new note", data);
       const res = createNewNote(data);
