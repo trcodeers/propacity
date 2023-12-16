@@ -11,9 +11,7 @@ type Props = {
 }
 const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
 
- 
-
-    const { register, handleSubmit, reset } = useForm({
+    const { register, handleSubmit, reset, setValue } = useForm({
         defaultValues:{
             title: formData?.title || '' ,
             description: formData?.description || '',
@@ -21,6 +19,10 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
         }
     });
 
+    useEffect(() =>{
+      setValue('title', formData?.title)
+      setValue('description', formData?.description)
+    }, [formData])
 
   const onSubmit = (data: any) => {
     console.log(data);
