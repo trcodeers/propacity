@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import NoteCard from './components/noteCard';
 import NoteModal from './components/notesFormModal';
+import { createNewNote } from './services/notes';
 
 
 
@@ -32,6 +33,7 @@ function App() {
     }
     else{
       console.log('Create new note', data)
+      createNewNote(data)
     }
   }
 

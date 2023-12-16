@@ -13,7 +13,7 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
   
     const { register, handleSubmit, reset } = useForm({
         defaultValues:{
-            name: formData?.name || '' ,
+            title: formData?.name || '' ,
             description: formData?.description || '',
             id: formData?.id || null
         }
@@ -25,7 +25,7 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
     updateNote(data);
     reset()
   };
-  
+
   return (
     <div
       className={`z-50 fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 ${
@@ -46,10 +46,10 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
               <div>
                 <input
                   className={`shadow appearance-none border rounded w-48 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outlin`}
-                  id="name"
+                  id="title"
                   type="text"
                   placeholder="Task"
-                  {...register("name", { required: "Name is required" })}
+                  {...register("title", { required: "Title is required" })}
                 />
               </div>
 
