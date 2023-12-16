@@ -1,10 +1,10 @@
+import { Notes } from "../types/notes"
 
 
-export const createNewNote = (data: any) =>{
+export const createNewNote = (data: any): boolean =>{
 
     const existingNotes: any = JSON.parse(localStorage.getItem('notes') as any) || []
     const newNoteID = (existingNotes?.length + 1).toString()
-    console.log(newNoteID)
     const newNote = {
         ...data,
         id: newNoteID,
@@ -16,7 +16,7 @@ export const createNewNote = (data: any) =>{
 
 }   
 
-export const editNote = (data: any) =>{
+export const editNote = (data: Notes): boolean =>{
 
     const { id } = data
     if(!id) return false
@@ -30,13 +30,13 @@ export const editNote = (data: any) =>{
 
 }
 
-export const getAllNotes = () =>{
+export const getAllNotes = (): Array<Notes> =>{
 
     const allNotes = localStorage.getItem('notes')
     return allNotes ? JSON.parse(allNotes) : []
 }
 
-export const deleteNote = (id: string) =>{
+export const deleteNote = (id: string): boolean =>{
     
     if(!id) return false
 

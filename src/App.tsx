@@ -36,18 +36,15 @@ function App() {
   };
 
   const onClickEdit = (data: Notes): void => {
-    console.log("click edit", data);
     setNoteToEdit(data);
     setModalOpen(true);
   };
 
   const updateNote = (data: Notes): void => {
     if (data.id) {
-      console.log("update existing note", data);
       const res = editNote(data);
       setNotes(getAllNotes());
     } else {
-      console.log("Create new note", data);
       const res = createNewNote(data);
       if (res) {
         setNotes(getAllNotes());
@@ -67,7 +64,6 @@ function App() {
     const res = deleteNote(id);
     if (res) {
       setNotes(getAllNotes());
-      console.log("Deleted successfuly!");
       enqueueSnackbar("Deleted successfuly!", {
         autoHideDuration: 1000,
         variant: "error",
@@ -79,18 +75,14 @@ function App() {
   };
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): void =>{
-    console.log(e.target.value)
     const { value } = e.target
     if(!value){
-      console.log('no val')
       setFilteredNotes(null)
-      console.log(notes)
       return
     }
 
 
     const filteredNotes = notes.filter((el: any) => el.title.toLowerCase().includes(value.toLowerCase()))
-    console.log(filteredNotes)
     setFilteredNotes([ ...filteredNotes ])
 
   }
