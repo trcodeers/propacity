@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useDeferredValue } from "react";
 import "./App.css";
 import NoteCard from "./components/noteCard";
 import NoteModal from "./components/notesFormModal";
@@ -21,6 +21,10 @@ function App() {
   const [filteredNotes, setFilteredNotes] = useState<Array<Notes> | null>(null);
 
   const [noteToEdit, setNoteToEdit] = useState<Notes | null>(null);
+  
+  const [searchText, setSearchText] = useState('')
+  const differedSearchText = useDeferredValue(searchText)
+
 
   useEffect(() => {
     setNotes(getAllNotes());
@@ -44,6 +48,8 @@ function App() {
     if (data.id) {
       const res = editNote(data);
       setNotes(getAllNotes());
+      setNoteToEdit(null);
+
     } else {
       const res = createNewNote(data);
       if (res) {
@@ -76,16 +82,22 @@ function App() {
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
-    if (!value) {
+    setSearchText(value)
+    
+  };
+
+  useEffect(() =>{
+    if (!differedSearchText) {
       setFilteredNotes(null);
       return;
     }
 
     const filteredNotes = notes.filter((el: any) =>
-      el.title.toLowerCase().includes(value.toLowerCase())
+      el.title.toLowerCase().includes(differedSearchText.toLowerCase())
     );
     setFilteredNotes([...filteredNotes]);
-  };
+
+  }, [differedSearchText])
 
   return (
     <div className="App">
@@ -126,6 +138,7 @@ function App() {
               onClickDelete={onClickDelete}
               id={id}
               color={color}
+              key={id}
             />
           );
         })}
