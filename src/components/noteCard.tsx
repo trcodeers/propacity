@@ -18,13 +18,13 @@ const NoteCard = (props: any) => {
         <div className="flex flex-row justify-center gap-4">
           <div
             onClick={() => onClickEdit({ title, description, id })}
-            className="cursor-pointer inline-block text-blue-700 bg-green-100 rounded-full px-2 py-"
+            className="cursor-pointer inline-block text-blue-700 bg-green-100 rounded-full px-2 py-2"
           >
             <MdEdit />
           </div>
           <div
-            onClick={() => onClickDelete(title, description, id)}
-            className="cursor-pointer inline-block text-red-500 bg-green-100 rounded-full px-2 py-"
+            onClick={() => onClickDelete(id)}
+            className="cursor-pointer inline-block text-red-500 bg-green-100 rounded-full px-2 py-2"
           >
             <MdDelete />
           </div>

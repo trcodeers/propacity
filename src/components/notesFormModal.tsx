@@ -11,22 +11,22 @@ type Props = {
   updateNote: any;
 };
 const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
-  const { register, handleSubmit, reset, setValue } = useForm({
+  
+  const { register, handleSubmit, reset, setValue, formState: { errors }} = useForm({
     defaultValues: {
-      title: formData?.title || "",
-      description: formData?.description || "",
-      id: formData?.id || null,
-      color: formData?.color || null,
+      title:  "",
+      description: "",
+      id: null,
     },
   });
 
-  const [selectedColor, setSelectedColor] = useState(formData?.color || "#fff");
+  const [selectedColor, setSelectedColor] = useState('#fff');
 
   useEffect(() => {
     setValue("id", formData?.id);
     setValue("title", formData?.title);
     setValue("description", formData?.description);
-    setValue("color", formData?.color);
+    setSelectedColor(formData?.color || '#fff');
   }, [formData]);
 
   const onSubmit = (data: any) => {
@@ -40,8 +40,8 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
         isOpen ? "" : "hidden"
       }`}
     >
-      <div className="mt-40 bg-white w-1/2 p-6 rounded shadow-lg absolute top-48 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <p className="text-lg  mb-4">
+      <div className="mt-44 bg-white w-1/2 p-6 rounded shadow-lg absolute top-48 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <p className="text-lg font-bold  mb-4">
           {formData?.id ? "Update Note" : "Create new note"}
         </p>
         <div
@@ -64,6 +64,7 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
                   placeholder="Title"
                   {...register("title", { required: "Title is required" })}
                 />
+                {errors.title && <p className="text-red-700">{errors.title.message}</p>}
               </div>
 
               <div>
@@ -76,6 +77,7 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
                   })}
                   rows={6}
                 />
+                {errors.description && <p className="text-red-700">{errors.description.message}</p>}
               </div>
 
               <div>
