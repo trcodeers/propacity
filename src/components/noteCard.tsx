@@ -5,7 +5,7 @@ const NoteCard = (props: any) => {
   return (
     <div className="w-[220px] h-36 rounded shadow-lg relative" style={{ backgroundColor: color || 'fff' }}>
       <div className="px-3 py-2 text-center">
-        <div className="font-bold text-md mb-2 text-center overflow-hidden line-clamp-1">
+      <div className="font-bold w-full text-md mb-2 text-center overflow-hidden truncate">
           {title}
         </div>
 
