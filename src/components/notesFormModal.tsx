@@ -23,6 +23,7 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
       setValue('title', formData?.title)
       setValue('description', formData?.description)
       setValue('id', formData?.id || null)
+      console.log(formData)
     }, [formData])
 
   const onSubmit = (data: any) => {

@@ -28,6 +28,7 @@ function App() {
 
   const closeModal = () => {
     setModalOpen(false);
+    setNoteToEdit(null)
   };
 
   const onClickEdit = (data: any) => {
