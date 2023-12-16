@@ -112,6 +112,12 @@ function App() {
         onClose={closeModal}
       />
 
+      <div className="text-center mt-20">
+        {
+          (filteredNotes || notes).length === 0 && <p className="text-2xl">No Notes</p>
+        }
+      </div>
+
       <div className="flex flex-wrap flex-row gap-4 justify-center mt-12 px-8">
         {(filteredNotes || notes).map((el: any, index: number) => {
           const { title, description, id, color } = el;
