@@ -3,7 +3,7 @@
 export const createNewNote = (data: any) =>{
 
     const existingNotes: any = JSON.parse(localStorage.getItem('notes') as any) || []
-    const newNoteID = existingNotes?.length + 1
+    const newNoteID = (existingNotes?.length + 1).toString()
     console.log(newNoteID)
     const newNote = {
         ...data,

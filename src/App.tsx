@@ -44,6 +44,10 @@ function App() {
     setModalOpen(false)
   };
 
+  const deleteNote = (id: any) =>{
+
+  }
+
   return (
     <div className="App">
       <button onClick={onClickAddNote} className="bg-red-100">
