@@ -36,7 +36,6 @@ function App() {
   };
 
   const onClickEdit = (data: Notes): void => {
-    console.log('edit',data)
     setNoteToEdit(data);
     setModalOpen(true);
   };

@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoMdClose } from "react-icons/io";
 import { SketchPicker } from "react-color";
+import { Notes } from "../types/notes";
 
 type Props = {
   isOpen: boolean;
-  onClose: any;
+  onClose: () => void;
   formData: any;
-  updateNote: any;
+  updateNote: (data: Notes) => void;
 };
 const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
   
@@ -22,16 +23,14 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
   const [selectedColor, setSelectedColor] = useState<string>('#fff');
 
   useEffect(() => {
-    setValue("id", formData?.id);
-    setValue("title", formData?.title);
-    setValue("description", formData?.description);
-    setSelectedColor(formData?.color ? formData?.color : '#fff');
+    if(formData){
+      setValue("id", formData?.id);
+      setValue("title", formData?.title);
+      setValue("description", formData?.description);
+      setSelectedColor(formData?.color ? formData?.color : '#fff');
+    }
   }, [formData]);
 
-  useEffect(() =>{
-    console.log(selectedColor)
-    console.log(formData)
-  }, [selectedColor])
 
   const onSubmit = (data: any) => {
     updateNote({ ...data, color: selectedColor });
