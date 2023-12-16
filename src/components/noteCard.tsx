@@ -17,7 +17,7 @@ const NoteCard = (props: any) => {
       <div className="absolute bottom-0 right-0 mb-1 mr-2">
         <div className="flex flex-row justify-center gap-4">
           <div
-            onClick={() => onClickEdit({ title, description, id })}
+            onClick={() => onClickEdit({ title, description, id, color })}
             className="cursor-pointer inline-block text-blue-700 bg-green-100 rounded-full px-2 py-2"
           >
             <MdEdit />

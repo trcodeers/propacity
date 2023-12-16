@@ -36,6 +36,7 @@ function App() {
   };
 
   const onClickEdit = (data: Notes): void => {
+    console.log('edit',data)
     setNoteToEdit(data);
     setModalOpen(true);
   };
@@ -102,12 +103,12 @@ function App() {
         <SearchBar onInputChange={onInputChange} />
       </div>
 
-      <NoteModal
+      {modalOpen && <NoteModal
         isOpen={modalOpen}
         formData={noteToEdit}
         updateNote={updateNote}
         onClose={closeModal}
-      />
+      />}
 
       <div className="text-center mt-20">
         {(filteredNotes || notes).length === 0 && (
