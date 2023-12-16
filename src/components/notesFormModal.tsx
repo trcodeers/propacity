@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoMdClose } from "react-icons/io";
 // import { TaskData } from "../types/items";
+import { SketchPicker } from 'react-color'
 
 type Props = {
   isOpen: boolean 
@@ -15,15 +16,16 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
         defaultValues:{
             title: formData?.title || '' ,
             description: formData?.description || '',
-            id: formData?.id || null
+            id: formData?.id || null,
+            color: formData?.color || null,
         }
     });
 
     useEffect(() =>{
+      setValue('id', formData?.id || null)
       setValue('title', formData?.title)
       setValue('description', formData?.description)
-      setValue('id', formData?.id || null)
-      console.log(formData)
+      setValue('color', formData?.color || null)
     }, [formData])
 
   const onSubmit = (data: any) => {
@@ -47,7 +49,8 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
             className="bg-white rounded mb-4"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="flex flex-col gap-4 justify-center">
+            <div className="flex flex-col gap-4 justify-center mt-50">
+              
               <div>
                 <input
                   className={`shadow appearance-none border rounded w-48 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outlin`}
@@ -69,6 +72,10 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
                   rows={6}
                 />
               </div>
+
+              {/* <div>
+                <SketchPicker />
+              </div> */}
 
               <div>
                 <button

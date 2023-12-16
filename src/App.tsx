@@ -90,9 +90,9 @@ function App() {
         onClose={closeModal}
       />
 
-      <div className="flex flex-wrap flex-row gap-4 justify-center mt-12">
+      <div className="flex flex-wrap flex-row gap-4 justify-center mt-12 px-8">
         {notes.map((el: any, index: number) => {
-          const { title, description, id } = el;
+          const { title, description, id, color } = el;
           return (
             <NoteCard
               title={title}
@@ -100,6 +100,7 @@ function App() {
               onClickEdit={onClickEdit}
               onClickDelete={onClickDelete}
               id={id}
+              color={color}
             />
           );
         })}

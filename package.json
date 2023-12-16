@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-color": "^3.0.10",
     "tailwindcss": "^3.3.6"
   }
 }
