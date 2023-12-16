@@ -4,7 +4,9 @@ This app is a simple version of Google Keep.
 
 <h3>How to Run locally </h3>
 1. Clone this repo
+</br>
 2. Run 'npm install' from the project to install all dependencies
+</br>
 3. To start the app run 'npm run start' and locate http://localhost:3000 in the browser.
 
 
