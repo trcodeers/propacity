@@ -16,9 +16,9 @@ function App() {
   const { enqueueSnackbar } = useSnackbar();
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  
+
   const [notes, setNotes] = useState<Array<Notes>>([]);
-  const [filteredNotes, setFilteredNotes] = useState<Array<Notes> | null>(null)
+  const [filteredNotes, setFilteredNotes] = useState<Array<Notes> | null>(null);
 
   const [noteToEdit, setNoteToEdit] = useState<Notes | null>(null);
 
@@ -74,22 +74,21 @@ function App() {
     }
   };
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): void =>{
-    const { value } = e.target
-    if(!value){
-      setFilteredNotes(null)
-      return
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { value } = e.target;
+    if (!value) {
+      setFilteredNotes(null);
+      return;
     }
 
-
-    const filteredNotes = notes.filter((el: any) => el.title.toLowerCase().includes(value.toLowerCase()))
-    setFilteredNotes([ ...filteredNotes ])
-
-  }
+    const filteredNotes = notes.filter((el: any) =>
+      el.title.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredNotes([...filteredNotes]);
+  };
 
   return (
     <div className="App">
-      
       <div className="text-center">
         <button
           onClick={onClickAddNote}
@@ -100,9 +99,7 @@ function App() {
       </div>
 
       <div className="text-center mt-4">
-        <SearchBar
-          onInputChange={onInputChange}
-        />
+        <SearchBar onInputChange={onInputChange} />
       </div>
 
       <NoteModal
@@ -113,9 +110,9 @@ function App() {
       />
 
       <div className="text-center mt-20">
-        {
-          (filteredNotes || notes).length === 0 && <p className="text-2xl">No Notes</p>
-        }
+        {(filteredNotes || notes).length === 0 && (
+          <p className="text-2xl">No Notes</p>
+        )}
       </div>
 
       <div className="flex flex-wrap flex-row gap-4 justify-center mt-12 px-8">
@@ -133,7 +130,6 @@ function App() {
           );
         })}
       </div>
-
     </div>
   );
 }
