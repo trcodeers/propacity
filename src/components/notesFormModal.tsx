@@ -20,7 +20,7 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
     },
   });
 
-  const [selectedColor, setSelectedColor] = useState("#fff");
+  const [selectedColor, setSelectedColor] = useState(formData?.color || "#fff");
 
   useEffect(() => {
     setValue("id", formData?.id);
@@ -36,12 +36,12 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
 
   return (
     <div
-      className={`z-50 fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 ${
+      className={`z-50 overflow-y-auto overflow-x-hidden fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 ${
         isOpen ? "" : "hidden"
       }`}
     >
       <div className="bg-white w-1/2 p-6 rounded shadow-lg absolute top-48 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <p className="text-l  mb-4">
+        <p className="text-lg  mb-4">
           {formData?.id ? "Update Note" : "Create new note"}
         </p>
         <div
@@ -98,7 +98,7 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote }: Props) => {
             </div>
           </form>
         </div>
-        
+
       </div>
     </div>
   );

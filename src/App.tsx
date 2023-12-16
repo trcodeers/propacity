@@ -28,7 +28,7 @@ function App() {
 
   const closeModal = () => {
     setModalOpen(false);
-    setNoteToEdit(null)
+    setNoteToEdit(null);
   };
 
   const onClickEdit = (data: any) => {
@@ -76,14 +76,23 @@ function App() {
 
   return (
     <div className="App">
-      <button
-        onClick={onClickAddNote}
-        className="bg-red-500 text-white font-semibold py-2 px-3 rounded-sm mt-5 "
-      >
-        Add Note
-      </button>
+      <div className="text-center">
+        <button
+          onClick={onClickAddNote}
+          className="bg-red-500 text-white font-semibold py-2 px-3 rounded-sm mt-5"
+        >
+          Add Note
+        </button>
+      </div>
 
-    
+      <div className="text-center mt-4">
+        <input
+          type="text"
+          className="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
+          placeholder="Search..."
+        />
+      </div>
+
       <NoteModal
         isOpen={modalOpen}
         formData={noteToEdit}
