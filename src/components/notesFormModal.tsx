@@ -37,8 +37,8 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
       }`}
     >
       <div className="bg-white w-1/2 p-6 rounded shadow-lg absolute top-48 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <p className="text-l  mb-4">Update Task</p>
-        <div onClick={onClose} className="absolute right-8 top-6">
+        <p className="text-l  mb-4">{formData?.id ? 'Update Note' : 'Create new note' }</p>
+        <div onClick={onClose} className="cursor-pointer absolute right-8 top-6">
           <IoMdClose />
         </div>
         <div className="flex justify-center">
@@ -52,7 +52,7 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
                   className={`shadow appearance-none border rounded w-48 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outlin`}
                   id="title"
                   type="text"
-                  placeholder="Task"
+                  placeholder="Title"
                   {...register("title", { required: "Title is required" })}
                 />
               </div>
@@ -65,12 +65,13 @@ const NotesFormModal = ({ isOpen, onClose, formData, updateNote, } : Props) => {
                   {...register("description", {
                     required: "Description is required"
                   })}
+                  rows={6}
                 />
               </div>
 
-              <div className="flex items-center justify-between">
+              <div>
                 <button
-                  className="bg-red-200 text-black py-2 px-2 rounded focus:outline-none focus:shadow-outline"
+                  className="bg-red-500 w-[80px] text-center text-white py-2 px-2 rounded "
                   type="submit"
                 >
                   Save
